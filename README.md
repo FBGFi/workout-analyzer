@@ -11,11 +11,12 @@ erDiagram
     R_MUSCLE {
       int id PK
       string name UK
-      tinyint bodyPercentage
+      int bodyPercentage
     }
     R_MUSCLE_GROUP {
       int id PK
       string name UK
+      int bodyPercentage
     }
     R_EXCERCISE {
       int id PK
@@ -31,14 +32,15 @@ erDiagram
       int id PK
       int excerciseId PK,FK
       int trainingProgramId PK,FK
-      tinyint reps
-      tinyint weight
-      tinyint setNumber
+      int reps
+      int weight
+      int setNumber
     }
 
     L_MUSCLE_IN_GROUP {
       int muscleId PK,FK
       int muscleGroupId PK,FK
+      int groupPercentage
     }
     L_MUSCLE_IN_GROUP }o--|| R_MUSCLE_GROUP : for
     L_MUSCLE_IN_GROUP }o--|| R_MUSCLE : in
@@ -53,7 +55,7 @@ erDiagram
     L_EXCERCISE_MUSCLE {
       int excerciseId PK,FK
       int muscleId PK,FK
-      tinyint percentage
+      int activatedPercentage
     }
     L_EXCERCISE_MUSCLE }o--|| R_MUSCLE : targeting
     L_EXCERCISE_MUSCLE }o--|| R_EXCERCISE : is
@@ -61,9 +63,9 @@ erDiagram
     L_PROGRAM_EXCERCISES {
       int excerciseId PK,FK
       int trainingProgramId PK,FK
-      tinyint sets
-      tinyint reps
-      tinyint repsInReserve
+      int sets
+      int reps
+      int repsInReserve
       int timeBetweenSets
     }
     L_PROGRAM_EXCERCISES }o--|| D_TRAINING_PROGRAM : "included in"
