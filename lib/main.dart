@@ -3,8 +3,13 @@ import 'package:workout_analyzer/views/calendar.dart';
 import 'package:workout_analyzer/views/home.dart';
 import 'package:workout_analyzer/views/programs.dart';
 import 'package:workout_analyzer/views/statistics.dart';
+import 'package:workout_analyzer/data/operations.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await ensureDatabaseUp();
+
   runApp(const App());
 }
 

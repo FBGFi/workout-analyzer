@@ -11,6 +11,7 @@ erDiagram
     R_MUSCLE {
       int id PK
       string name UK
+      tinyint bodyPercentage
     }
     R_MUSCLE_GROUP {
       int id PK
@@ -19,6 +20,7 @@ erDiagram
     R_EXCERCISE {
       int id PK
       string name UK
+      bool spinalLoad
     }
 
     D_TRAINING_PROGRAM {
@@ -51,7 +53,7 @@ erDiagram
     L_EXCERCISE_MUSCLE {
       int excerciseId PK,FK
       int muscleId PK,FK
-      int percentage
+      tinyint percentage
     }
     L_EXCERCISE_MUSCLE }o--|| R_MUSCLE : targeting
     L_EXCERCISE_MUSCLE }o--|| R_EXCERCISE : is
