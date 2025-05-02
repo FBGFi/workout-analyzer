@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:workout_analyzer/views/calendar.dart';
 import 'package:workout_analyzer/views/home.dart';
 import 'package:workout_analyzer/views/programs.dart';
@@ -7,14 +8,12 @@ import 'package:workout_analyzer/data/operations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await ensureDatabaseUp();
-
-  runApp(const App());
+  runApp(App(db: await ensureDatabaseUp()));
 }
 
 class App extends StatefulWidget {
-  const App({super.key});
+  final Database db;
+  const App({super.key, required this.db});
 
   @override
   State<App> createState() => _AppState();
@@ -31,11 +30,11 @@ class _AppState extends State<App> {
 
   @override
   Widget build(context) {
-    const List<Widget> pages = [
-      HomePage(),
-      ProgramsPage(),
-      CalendarPage(),
-      StatisticsPage(),
+    List<Widget> pages = [
+      HomePage(db: widget.db),
+      const ProgramsPage(),
+      const CalendarPage(),
+      const StatisticsPage(),
     ];
     return MaterialApp(
         title: "Workout analyzer",
