@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 class L_MUSCLE_IN_GROUP {
   final int muscleId;
   final int muscleGroupId;
-  double groupPercentage;
+  final double groupPercentage;
 
   L_MUSCLE_IN_GROUP(
       {required this.muscleId,

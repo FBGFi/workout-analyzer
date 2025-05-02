@@ -2,8 +2,8 @@ import 'package:sqflite/sqflite.dart';
 
 class R_MUSCLE {
   final int id;
-  String name;
-  double bodyPercentage;
+  final String name;
+  final double bodyPercentage;
 
   R_MUSCLE(
       {required this.id, required this.name, required this.bodyPercentage});
