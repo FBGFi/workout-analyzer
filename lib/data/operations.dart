@@ -4,6 +4,8 @@ import 'package:workout_analyzer/data/R_MUSCLE.dart' as r_muscle;
 import 'package:workout_analyzer/data/R_MUSCLE_GROUP.dart' as r_muscle_group;
 import 'package:workout_analyzer/data/R_EXCERCISE.dart' as r_excercise;
 import 'package:workout_analyzer/data/R_WORKOUT.dart' as r_workout;
+import 'package:workout_analyzer/data/R_TRAINING_PROGRAM.dart'
+    as r_training_program;
 
 import 'package:workout_analyzer/data/D_TRAINING_PROGRAM.dart'
     as d_training_program;
@@ -29,6 +31,8 @@ Future<Database> ensureDatabaseUp() async {
     await r_excercise.insertExcercises(db);
     await r_workout.createTable(db);
     await r_workout.insertWorkouts(db);
+    await r_training_program.createTable(db);
+    await r_training_program.insertTrainingPrograms(db);
 
     await d_training_program.createTable(db);
     await d_training_program.insertExampleTrainingProgram(db);

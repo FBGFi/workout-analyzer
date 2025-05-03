@@ -2,29 +2,29 @@ import 'package:sqflite/sqflite.dart';
 
 class D_TRAINING_PROGRAM {
   final int id;
-  final String name;
-  final String description;
+  final int trainingProgramId;
+  final int active;
 
   D_TRAINING_PROGRAM(
-      {required this.id, required this.name, required this.description});
+      {required this.id,
+      required this.trainingProgramId,
+      required this.active});
 
   Map<String, Object> toMap() {
-    return {"id": id, "name": name, "description": description};
+    return {"id": id, "trainingProgramId": trainingProgramId, "active": active};
   }
 }
 
 createTable(Database db) async {
   await db.execute("""CREATE TABLE D_TRAINING_PROGRAM(
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
-        name TEXT,
-        description TEXT
+        trainingProgramId INTEGER, 
+        active INTEGER, 
+        FOREIGN KEY(trainingProgramId) REFERENCES R_TRAINING_PROGRAM(id)
       )""");
 }
 
 insertExampleTrainingProgram(Database db) async {
-  await db.insert(
-      "D_TRAINING_PROGRAM",
-      D_TRAINING_PROGRAM(
-              id: 0, name: "Push-pull-legs", description: "3-day split")
-          .toMap());
+  await db.insert("D_TRAINING_PROGRAM",
+      D_TRAINING_PROGRAM(id: 0, trainingProgramId: 0, active: 1).toMap());
 }

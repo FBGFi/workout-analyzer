@@ -29,12 +29,18 @@ erDiagram
       string name UK
       string description
     }
+    R_TRAINING_PROGRAM {
+      int id PK
+      string name UK
+      string description
+    }
 
     D_TRAINING_PROGRAM {
       int id PK
-      string name
-      string description
+      int trainingProgramId FK
+      int active
     }
+    D_TRAINING_PROGRAM }o--|| R_TRAINING_PROGRAM : for
     D_PROGRAM_WORKOUT {
       int id PK
       int workoutId FK
