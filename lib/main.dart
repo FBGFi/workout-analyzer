@@ -32,7 +32,7 @@ class _AppState extends State<App> {
   Widget build(context) {
     List<Widget> pages = [
       HomePage(db: widget.db),
-      const ProgramsPage(),
+      ProgramsPage(db: widget.db),
       const CalendarPage(),
       const StatisticsPage(),
     ];
