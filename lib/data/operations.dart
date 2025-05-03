@@ -46,3 +46,41 @@ Future<Database> ensureDatabaseUp() async {
   }, version: 1);
   return db;
 }
+
+class TrainingProgram {
+  final int id;
+  final int trainingProgramId;
+  int active;
+  final String name;
+  final String description;
+
+  TrainingProgram(
+      {required this.id,
+      required this.trainingProgramId,
+      required this.active,
+      required this.name,
+      required this.description});
+}
+
+Future<List<TrainingProgram>> getExistingTrainingPrograms(Database db) async {
+  final programs = await db.rawQuery("""
+  SELECT D.*, R.name, R.description 
+  FROM D_TRAINING_PROGRAM D 
+  JOIN R_TRAINING_PROGRAM AS R ON D.trainingProgramId = R.id
+""");
+  return [
+    for (final ({
+          'id': id as int,
+          'trainingProgramId': trainingProgramId as int,
+          'active': active as int,
+          'name': name as String,
+          'description': description as String,
+        }) in programs)
+      TrainingProgram(
+          id: id,
+          trainingProgramId: trainingProgramId,
+          active: active,
+          name: name,
+          description: description)
+  ];
+}

@@ -4,7 +4,7 @@ class R_EXCERCISE {
   final int id;
   final String name;
   final String description;
-  final bool spinalLoad;
+  final int spinalLoad;
 
   R_EXCERCISE(
       {required this.id,
@@ -38,7 +38,7 @@ insertExcercises(Database db) async {
         id: 0,
         name: "Lat pulldown",
         description: "Done in cable machine",
-        spinalLoad: false)
+        spinalLoad: 0)
   ];
   for (var excercise in excercises) {
     batch.insert("R_EXCERCISE", excercise.toMap());
